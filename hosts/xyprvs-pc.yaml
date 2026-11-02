@@ -11,9 +11,9 @@ description: DotDeDotz
 
 # Enabled modules
 enabled_modules:
-  - emacs
+  # - emacs
   - flatpak
-  - wm/niri
+  - wm/mango
   - app_images
 
 # Module processing mode
@@ -24,16 +24,16 @@ module_processing: parallel
 # Host-specific packages
 packages:
   - thunar
-  - zen-browser
   - vlc
+  # - flatpak:app.zen_browser.zen
 
 # Exclude packages from base or modules
 exclude: []
 
 default_apps:
-  scope: system
-  browser: zen-browser
-  text_editor: neovim
+  scope: user
+  # browser: app.zen_browser.zen
+  text_editor: nvim
   file_manager: thunar
   terminal: foot
   video_player: vlc
