@@ -1,0 +1,6 @@
+description: "Mango Window Manager Ecosystem"
+packages:
+  - mangowm
+  - dms-shell
+  - foot
+dotfiles_sync: true

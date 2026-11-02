@@ -1,0 +1,4 @@
+include "app-spawn.kdl"
+include "workspaces.kdl"
+include "binds.kdl"
+include "windowrules.kdl"

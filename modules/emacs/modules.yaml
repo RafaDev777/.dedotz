@@ -1,0 +1,14 @@
+description: "Doom Emacs Setup"
+packages:
+  - emacs
+  - fzf
+  - fd
+  - ripgrep
+  - cmake
+  - font-jetbrains-mono-nerd
+dotfiles_sync: true
+post_install_hook: |
+  if [ ! -d "$HOME/.config/emacs" ]; then
+  git clone --depth 1 https:github.com/doomemacs/doomemacs "$HOME/.config/emacs"
+  fi
+  "$HOME/.config/emacs/bin/doom" sync

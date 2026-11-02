@@ -1,0 +1,6 @@
+description: "Niri Window Manager Ecosystem"
+packages:
+  - niri
+  - dms-shell
+  - foot
+dotfiles_sync: true

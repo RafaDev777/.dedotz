@@ -1,0 +1,31 @@
+// global floating window rule
+window-rule {
+  match is-floating=true
+  geometry-corner-radius 12
+  clip-to-geometry true 
+}
+
+window-rule {
+  match is-active=false
+  opacity 0.9
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+window-rule {
+    match app-id="(?i)resolve"
+    match title="(?i)(import|select|open|save|choose|browse)"
+    open-floating true
+}
+
+window-rule {
+    match app-id="(?i)Emacs"
+    opacity 0.8
+    background-effect {
+        blur true
+        xray false
+        }
+    draw-border-with-background false
+}

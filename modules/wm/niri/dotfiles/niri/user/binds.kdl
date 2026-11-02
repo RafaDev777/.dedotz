@@ -1,0 +1,38 @@
+binds {
+  Mod+Space hotkey-overlay-title="Toggle DMS Spotlight" {spawn "dms" "ipc" "call" "spotlight" "toggle";}
+  Mod+T hotkey-overlay-title="Open Terminal: Ghostty" {spawn "ghostty";}
+  Super+Alt+L hotkey-overlay-title="Lock the Screen: DMS Lock" {spawn "dms" "ipc" "call" "lock" "lock"; }
+  
+  // Screenshots
+  Mod+Shift+S hotkey-overlay-title="Areal Screenshot" {screenshot;}
+
+  // Fake Full Screen
+  Mod+Shift+F hotkey-overlay-title="Toggle Fake Fullscreen" {toggle-windowed-fullscreen;}
+
+  // Special
+  // Mod+Grave hotkey-overlay-title="Toggle Special Workspace" {spawn "~/.config/niri/user/script/toggle-special.sh";}
+  Mod+Grave { spawn-sh "niri msg workspaces | grep -q '\\*.*special' && niri msg action focus-workspace-previous || niri msg action focus-workspace special"; }
+
+  // Jump to column
+  // Mod+1 hotkey-overlay-title="Focus Coplumn 1" {focus-column 1;} 
+  // Mod+2 hotkey-overlay-title="Focus Coplumn 2" {focus-column 2;} 
+  // Mod+3 hotkey-overlay-title="Focus Coplumn 2" {focus-column 3;} 
+  // Mod+4 hotkey-overlay-title="Focus Coplumn 2" {focus-column 4;} 
+  // Mod+5 hotkey-overlay-title="Focus Coplumn 2" {focus-column 5;} 
+
+  // Mod+BracketRight hotkey-overlay-title="Focus workspace down" {focus-workspace-down;}
+  // Mod+BracketLeft hotkey-overlay-title="Focus workspace up"{focus-workspace-up;}
+}
+
+
+// Unbind Ctrl+Grave from niri 
+recent-windows {
+  binds {
+    // Mod+Tab { next-window scope="workspace"; }
+    Alt+Shift+Tab { previous-window; }
+  }
+}
+
+
+
+
