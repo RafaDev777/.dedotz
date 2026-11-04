@@ -1,0 +1,2 @@
+description: "Syncronize Folder with Google drive"
+packages: [rclone]

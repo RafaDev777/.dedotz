@@ -1,0 +1,5 @@
+description: Sync note with Syncthing
+packages:
+  - syncthing
+post_install_hook: scripts/syncthing_init.sh
+hook_behaviour: once

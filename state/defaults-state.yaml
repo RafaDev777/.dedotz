@@ -1,8 +1,8 @@
-last_updated: 2026-11-02T01:38:52.150002938Z
+last_updated: 2026-11-04T13:05:29.230048559Z
 scope: user
 apps:
   video_player: vlc
-  file_manager: thunar
   terminal: foot
   text_editor: nvim
+  file_manager: thunar
 custom_mime_types: {}
