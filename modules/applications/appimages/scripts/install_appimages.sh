@@ -1,12 +1,34 @@
 #!/usr/bin/env bash
-set -e
-echo "get the user name"
-REAL_USER="$(logname)"
-echo "the user is $REAL_USER"
-BIN_DIR="/home/$REAL_USER/AppImages"
-echo "checking and creating AppImages folder"
-mkdir -p "$BIN_DIR"
-echo "installing app image in $BIN_DIR"
+set -euo pipefail
+
+# Resolve the real (non-root) user
+REAL_USER="${SUDO_USER:-}"
+[ -z "$REAL_USER" ] && REAL_USER="$(logname 2>/dev/null || true)"
+if [ -z "$REAL_USER" ] || [ "$REAL_USER" = "root" ]; then
+  REAL_USER="$(getent passwd | awk -F: '$3>=1000 && $3<65534 {print $1; exit}')"
+fi
+[ -z "$REAL_USER" ] && { echo "Could not determine the real user" >&2; exit 1; }
+
+REAL_HOME="$(getent passwd "$REAL_USER" | cut -d: -f6)"
+REAL_UID="$(id -u "$REAL_USER")"
+BIN_DIR="$REAL_HOME/AppImages"
+
+echo "User: $REAL_USER  Home: $REAL_HOME  Target: $BIN_DIR"
+
+# Run a command as the real user, with a session environment flatpak can use
+as_user() {
+  if [ "$(id -u)" -eq 0 ]; then
+    sudo -u "$REAL_USER" env \
+      HOME="$REAL_HOME" \
+      XDG_RUNTIME_DIR="/run/user/$REAL_UID" \
+      DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$REAL_UID/bus" \
+      "$@"
+  else
+    "$@"
+  fi
+}
+
+as_user mkdir -p "$BIN_DIR"
 
 APPS=(
   "storytold/vectorcraft:vectorcraft"
@@ -16,43 +38,49 @@ APPS=(
   "storytold/designcraft:designcraft"
 )
 
+gearlever_integrate() {
+  local file="$1"
+  if as_user flatpak info it.mijorus.gearlever &>/dev/null; then
+    as_user flatpak run it.mijorus.gearlever --integrate --replace -y "$file" \
+      || echo "Warning: Gear Lever integration failed for $file" >&2
+  elif command -v gearlever &>/dev/null; then
+    as_user gearlever --integrate --replace -y "$file" \
+      || echo "Warning: Gear Lever integration failed for $file" >&2
+  fi
+}
+
 for item in "${APPS[@]}"; do
   REPO="${item%%:*}"
   APP_NAME="${item##*:}"
+  TARGET="$BIN_DIR/$APP_NAME.AppImage"
 
-  # Check if the AppImage already exists locally (checking both uppercase and lowercase extensions)
-  if [ -f "$BIN_DIR/$APP_NAME.AppImage" ] || [ -f "$BIN_DIR/$APP_NAME.appimage" ]; then
-      echo "Skipping $APP_NAME: AppImage already exists in $BIN_DIR."
-      continue
-  fi
-
-  echo "Checking latest release for $REPO..."
-
-  DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-    grep "browser_download_url" |
-    grep -i 'linux-x86_64\.AppImage"' |
-    head -n 1 |
-    cut -d '"' -f 4)
-
-  if [ -z "$DOWNLOAD_URL" ]; then
-    echo "Warning: Could not find a valid .AppImage release for $REPO. Skipping." >&2
+  if [ -f "$TARGET" ] || [ -f "$BIN_DIR/$APP_NAME.appimage" ]; then
+    echo "Skipping $APP_NAME: already in $BIN_DIR"
     continue
   fi
 
-  TARGET_PATH="$BIN_DIR/$APP_NAME.AppImage"
+  echo "Checking latest release for $REPO..."
+  DOWNLOAD_URL=$(curl -fsS "https://api.github.com/repos/$REPO/releases/latest" \
+    | grep "browser_download_url" \
+    | grep -i 'linux-x86_64\.AppImage"' \
+    | head -n 1 \
+    | cut -d '"' -f 4 || true)
 
-  echo "Downloading latest version of $APP_NAME..."
-  curl -L -o "$TARGET_PATH" "$DOWNLOAD_URL"
-  chmod +x "$TARGET_PATH"
-  echo "Successfully downloaded $APP_NAME to $TARGET_PATH"
+  if [ -z "$DOWNLOAD_URL" ]; then
+    echo "Warning: no .AppImage release found for $REPO. Skipping." >&2
+    continue
+  fi
 
-  # Integrate with Gear Lever if available
-  if flatpak info it.mijorus.gearlever &>/dev/null; then
-    echo "Integrating $APP_NAME with Gear Lever..."
-    flatpak run it.mijorus.gearlever "$TARGET_PATH" || true
-  elif command -v gearlever &>/dev/null; then
-    echo "Integrating $APP_NAME with Gear Lever..."
-    gearlever "$TARGET_PATH" || true
+  echo "Downloading $APP_NAME..."
+  TMP="$(mktemp)"
+  if curl -fL -o "$TMP" "$DOWNLOAD_URL"; then
+    mv "$TMP" "$TARGET"
+    chown "$REAL_USER":"$(id -gn "$REAL_USER")" "$TARGET"
+    chmod +x "$TARGET"
+    gearlever_integrate "$TARGET"
+  else
+    rm -f "$TMP"
+    echo "Warning: download failed for $APP_NAME" >&2
   fi
 done
 

@@ -1,5 +1,5 @@
 local packages = {
-    "mangowm-git",
+    "mangowm",
     "dms-shell",
     "foot"
 }
