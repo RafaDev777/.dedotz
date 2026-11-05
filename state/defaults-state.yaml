@@ -1,7 +1,0 @@
-last_updated: 2026-11-05T07:47:18.917211933Z
-scope: user
-apps:
-  terminal: foot
-  video_player: vlc
-  file_manager: thunar
-custom_mime_types: {}

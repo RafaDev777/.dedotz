@@ -1,5 +1,0 @@
-backed_up:
-- target: /home/xyprvs/.config/mango
-  backup: /home/xyprvs/.config/mango.backup.20261102_083331
-  module: wm/mango
-  backed_up_at: 2026-11-02T01:33:31.903169921+00:00
