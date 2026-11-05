@@ -10,6 +10,9 @@ return {
   enabled_modules = {
     "base",
     "wm/mango",
+    "emacs",
+    "dev/toolchains",
+    "dev/node-fnm",
     "applications/appimages",
     "sync/syncthing",
   },
