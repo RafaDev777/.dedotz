@@ -2,3 +2,4 @@
 system-packages-*.yaml
 config.yaml
 config.lua
+state/
