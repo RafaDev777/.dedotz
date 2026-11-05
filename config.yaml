@@ -1,9 +1,0 @@
-# dcli configuration pointer
-# This file points to the active host configuration
-# The full configuration lives in hosts/xyprvs-pc.yaml
-
-# Active host
-host: xyprvs-pc
-
-# Package manager: pacman (Arch), apt (Debian/Ubuntu), or dnf (Fedora/RHEL)
-package_manager: pacman

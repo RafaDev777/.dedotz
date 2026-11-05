@@ -1,0 +1,73 @@
+host: xyprvs-pc
+description: ''
+import: []
+enabled_modules:
+- wm/mango
+packages: []
+exclude: []
+additional_packages: []
+flatpak_scope: user
+auto_prune: false
+module_processing: parallel
+strict_package_order: false
+config_backups:
+  enabled: true
+  max_backups: 5
+system_backups:
+  enabled: true
+  backup_on_sync: true
+  backup_on_update: true
+  tool: null
+  snapper_config: root
+  max_backups: 5
+services:
+  enabled: []
+  disabled: []
+  scope: system
+enabled_service_profiles: []
+update_hooks:
+  pre_update: null
+  post_update: null
+  behavior: ask
+  devel: false
+  run_as_user: false
+default_apps:
+  scope: system
+  browser: null
+  text_editor: null
+  file_manager: null
+  terminal: null
+  video_player: null
+  audio_player: null
+  image_viewer: null
+  pdf_viewer: null
+  mime_types: {}
+theming:
+  scope: user
+  cursor: null
+  icons: null
+  theme: null
+  dark_or_light: null
+  font: null
+  gtk: null
+  qt: null
+  env_vars: {}
+editor: null
+package_manager: pacman
+aur_helper: null
+sync_sudo: false
+auto_commit: false
+nix_gui_packages: []
+nix_wrapped_packages: []
+nix:
+  enabled: false
+  home_manager_enabled: false
+  nix_profile_enabled: false
+  flake_enabled: false
+  nixpkgs_channel: nixpkgs-unstable
+  home_manager_channel: release-25.05
+nvidia:
+  enabled: false
+  driver: auto
+  check_updates: true
+  notify: true
