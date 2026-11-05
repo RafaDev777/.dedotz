@@ -1,48 +1,7 @@
 # Auto-generated state file - tracks dcli-managed packages
-# Generated: 2026-11-05T05:44:10.655953897+00:00
+# Generated: 2026-11-05T05:47:08.330153945+00:00
 
 packages:
-  - name: btop
-    version: 1.4.7-1
-    type: native
-  - name: syncthing
-    version: 2.1.7-1
-    type: native
-  - name: fzf
-    version: 0.74.5-1
-    type: native
-  - name: git
-    version: 2.56.0-1
-    type: native
-  - name: base-devel
-    version: 1-2
-    type: native
-  - name: snapper
-    version: 0.13.2-1
-    type: native
-  - name: linux
-    version: 7.2.11.arch1-1
-    type: native
-  - name: it.mijorus.gearlever
-    type: flatpak
-  - name: base
-    version: 3-3
-    type: native
-  - name: yay
-    version: 13.1.0-1
-    type: native
-  - name: vim
-    version: 9.2.1178-1
-    type: native
-  - name: mangowm-git
-    version: 0.18.3.r3.g6f322a3-1
-    type: native
-  - name: dms-shell
-    version: 2.0.0-1
-    type: native
-  - name: linux-firmware
-    version: 20260916-1
-    type: native
   - name: neovim
     version: 0.12.6-1
     type: native
@@ -55,3 +14,44 @@ packages:
   - name: foot
     version: 1.28.0-2
     type: native
+  - name: btop
+    version: 1.4.7-1
+    type: native
+  - name: base
+    version: 3-3
+    type: native
+  - name: vim
+    version: 9.2.1178-1
+    type: native
+  - name: yay
+    version: 13.1.0-1
+    type: native
+  - name: linux
+    version: 7.2.11.arch1-1
+    type: native
+  - name: dms-shell
+    version: 2.0.0-1
+    type: native
+  - name: linux-firmware
+    version: 20260916-1
+    type: native
+  - name: base-devel
+    version: 1-2
+    type: native
+  - name: syncthing
+    version: 2.1.7-1
+    type: native
+  - name: git
+    version: 2.56.0-1
+    type: native
+  - name: snapper
+    version: 0.13.2-1
+    type: native
+  - name: mangowm-git
+    version: 0.18.3.r3.g6f322a3-1
+    type: native
+  - name: fzf
+    version: 0.74.5-1
+    type: native
+  - name: it.mijorus.gearlever
+    type: flatpak

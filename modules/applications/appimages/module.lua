@@ -9,7 +9,8 @@ local apps = {
   { repo = "storytold/photocraft",  name = "photocraft" },
   { repo = "storytold/pdfcraft",    name = "pdfcraft" },
   { repo = "storytold/effectcraft", name = "effectcraft" },
-  { repo = "storytold/designcraft", name = "designcraft" }
+  { repo = "storytold/designcraft", name = "designcraft" },
+  { repo = "storytolf/filmcraft",   name = "filmcraft" }
 }
 
 return {
@@ -64,7 +65,7 @@ return {
           download_url = json_response:match('"(https://[^\"]+/releases/download/[^\"]+/linux%-x86_64%.AppImage)"')
           if not download_url then
             download_url = json_response:match(
-            '"(https://[^\"]+/releases/download/[^\"]+/[^\"]%.[aA][pP][pP][iI][mM][aA][gG][eE])"')
+              '"(https://[^\"]+/releases/download/[^\"]+/[^\"]%.[aA][pP][pP][iI][mM][aA][gG][eE])"')
           end
         end
 
