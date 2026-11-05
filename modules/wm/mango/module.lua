@@ -1,7 +1,10 @@
 local packages = {
     "mangowm",
-    "dms-shell",
-    "foot"
+    "dux-shell",
+    "foot",
+
+    -- Dux shell Dependencies
+    "quickshell"
 }
 return {
   name = "Mango WM",
