@@ -69,7 +69,7 @@ install_astro_ls() {
     @astrojs/language-server typescript typescript-language-server
 
   # Re-snapshot PATH so Emacs (and Eglot) can find astro-ls
-  as_user doom env
+  as_user doom sync --env
 }
 
 # ---------- main ----------
