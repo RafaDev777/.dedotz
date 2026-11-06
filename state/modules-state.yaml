@@ -1,6 +1,6 @@
-last_updated: 2026-11-05T07:47:18.912097970Z
+last_updated: 2026-11-05T11:04:59.036410781Z
 completed_modules:
-- sync/syncthing
-- applications/appimages
 - base
 - wm/mango
+- sync/syncthing
+- applications/appimages

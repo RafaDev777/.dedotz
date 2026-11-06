@@ -1,21 +1,41 @@
 # Auto-generated state file - tracks dcli-managed packages
-# Generated: 2026-11-05T07:47:18.925000855+00:00
+# Generated: 2026-11-05T11:04:59.038977341+00:00
 
 packages:
-  - name: fzf
-    version: 0.74.5-1
-    type: native
   - name: base
     version: 3-3
+    type: native
+  - name: vim
+    version: 9.2.1178-1
+    type: native
+  - name: neovim
+    version: 0.12.6-1
+    type: native
+  - name: it.mijorus.gearlever
+    type: flatpak
+  - name: vlc
+    version: 3.0.24-1
+    type: native
+  - name: btop
+    version: 1.4.7-1
+    type: native
+  - name: linux-firmware
+    version: 20260916-1
+    type: native
+  - name: dux-shell
+    version: 2.0.0-1
+    type: native
+  - name: thunar
+    version: 4.20.10-1
+    type: native
+  - name: foot
+    version: 1.28.0-2
     type: native
   - name: quickshell
     version: 0.3.2-1
     type: native
-  - name: yay
-    version: 13.1.0-1
-    type: native
-  - name: thunar
-    version: 4.20.10-1
+  - name: snapper
+    version: 0.13.2-1
     type: native
   - name: mangowm
     version: 0.18.4-1
@@ -23,38 +43,18 @@ packages:
   - name: git
     version: 2.56.0-1
     type: native
-  - name: neovim
-    version: 0.12.6-1
-    type: native
   - name: syncthing
     version: 2.1.7-1
-    type: native
-  - name: it.mijorus.gearlever
-    type: flatpak
-  - name: linux
-    version: 7.2.11.arch1-1
     type: native
   - name: base-devel
     version: 1-2
     type: native
-  - name: linux-firmware
-    version: 20260916-1
+  - name: linux
+    version: 7.2.11.arch1-1
     type: native
-  - name: btop
-    version: 1.4.7-1
+  - name: yay
+    version: 13.1.0-1
     type: native
-  - name: vlc
-    version: 3.0.24-1
-    type: native
-  - name: snapper
-    version: 0.13.2-1
-    type: native
-  - name: vim
-    version: 9.2.1178-1
-    type: native
-  - name: dux-shell
-    version: 2.0.0-1
-    type: native
-  - name: foot
-    version: 1.28.0-2
+  - name: fzf
+    version: 0.74.5-1
     type: native

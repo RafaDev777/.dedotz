@@ -148,3 +148,13 @@
   (map! :leader :desc "org timeblock" "o b" #'org-timeblock)
   :config
   (setq org-timeblock-span 7)) ;; daya displayed
+
+;; drag stuff
+;; to achieve alt j and alt k to move line up and down like neovim
+(use-package! drag-stuff
+  :defer t
+  :init
+  (map! :nv "M-k" #'drag-stuff-up
+        :nv "M-j" #'drag-stuff-down
+        :nv "M-h" #'drag-stuff-left
+        :nv "M-l" #'drag-stuff-right))

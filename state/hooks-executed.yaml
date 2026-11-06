@@ -9,3 +9,8 @@ hooks:
   script: /home/xyprvs/.dedotz/modules/applications/appimages/scripts/install_appimages.sh
   script_hash: '4626798978510670544'
   status: executed
+- executed_at: 2026-11-05T11:03:45.783721210+00:00
+  module: sync/syncthing
+  script: /home/xyprvs/.dedotz/modules/sync/syncthing/scripts/syncthing_init.sh
+  script_hash: '6637592881991902738'
+  status: executed
