@@ -18,13 +18,32 @@ resolve_real_user() {
 as_user() {
   local runner=()
   [ "$(id -u)" -eq 0 ] && runner=(sudo -u "$REAL_USER")
-  "${runner[@]}" env HOME="$REAL_HOME" "$@"
+  "${runner[@]}" env HOME="$REAL_HOME" COREPACK_ENABLE_DOWNLOAD_PROMPT=0 "$@"
 }
 
 # Run a snippet in a bash that has fnm's environment loaded
 in_fnm() {
-  as_user bash -c 'eval "$(fnm env)"; '"$1"
+  as_user bash -c 'eval "$(fnm env --shell bash)"; '"$1"
 }
+
+install_node() {
+  log "Installing Node ($NODE_VERSION)"
+  in_fnm "fnm install $NODE_VERSION"
+  in_fnm "fnm default $NODE_VERSION"
+}
+
+enable_pnpm() {
+  # Node 25+ no longer bundles corepack, so install it into the fnm Node first
+  if ! in_fnm "command -v corepack" &>/dev/null; then
+    log "corepack not bundled with this Node, installing via npm"
+    in_fnm "npm install -g corepack"
+  fi
+
+  log "Enabling pnpm through corepack"
+  in_fnm "corepack enable pnpm && corepack prepare pnpm@latest --activate"
+}
+
+# ---------- main ----------
 
 echo "==> Provisioning Node (fnm + pnpm) module..."
 
@@ -34,12 +53,8 @@ log "User: $REAL_USER  Home: $REAL_HOME"
 
 command -v fnm &>/dev/null || { echo "fnm not installed" >&2; exit 1; }
 
-log "Installing Node ($NODE_VERSION)"
-in_fnm "fnm install $NODE_VERSION"
-in_fnm "fnm default $NODE_VERSION"
+install_node
+enable_pnpm
 
-log "Enabling pnpm through corepack"
-in_fnm "corepack enable pnpm && corepack prepare pnpm@latest --activate"
-
+log "node $(in_fnm 'node -v'), pnpm $(in_fnm 'pnpm -v')"
 echo "==> Node setup complete!"
-echo "    Add to your shell rc:  eval \"\$(fnm env --use-on-cd)\""
