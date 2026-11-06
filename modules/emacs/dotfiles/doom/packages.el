@@ -54,3 +54,4 @@
 (package! treesit-auto)
 (package! astro-ts-mode)
 (package! org-timeblock)
+(package! drag-stuff)
